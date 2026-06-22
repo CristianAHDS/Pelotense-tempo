@@ -12,10 +12,10 @@ const DayOne = () => {
   const positions =
     width === 2048 && height === 1152
       ? {
-          weather1: { top: 200, left: 1180 },
-          weather2: { top: 140, left: 1595 },
-          weather3: { top: 425, left: 1520 },
-          weather4: { top: 650, left: 1465 },
+          weather1: { top: 230, left: 1200 },
+          weather2: { top: 170, left: 1615 },
+          weather3: { top: 455, left: 1540 },
+          weather4: { top: 680, left: 1485 },
         }
       : {
           weather1: { top: 180, left: 1100 },
