@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 import { Container, Background, Content } from './pages.styled.jsx';
 
 import WeatherCard1 from '../components/weather/Weather1';
@@ -24,12 +26,32 @@ const DayOne = () => {
           weather4: { top: 630, left: 1370 },
         };
 
+  const cardAnimation = (delay) => ({
+    initial: {
+      opacity: 0,
+      y: -20,
+      scaleY: 0.8,
+      transformOrigin: 'top center',
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      scaleY: 1,
+    },
+    transition: {
+      duration: 0.4,
+      delay,
+      ease: 'easeOut',
+    },
+  });
+
   return (
     <Container>
       <Background />
 
       <Content>
-        <div
+        <motion.div
+          {...cardAnimation(0)}
           style={{
             position: 'absolute',
             top: `${positions.weather1.top}px`,
@@ -37,9 +59,10 @@ const DayOne = () => {
           }}
         >
           <WeatherCard1 id="weather1" />
-        </div>
+        </motion.div>
 
-        <div
+        <motion.div
+          {...cardAnimation(0.15)}
           style={{
             position: 'absolute',
             top: `${positions.weather2.top}px`,
@@ -47,9 +70,10 @@ const DayOne = () => {
           }}
         >
           <WeatherCard2 id="weather2" />
-        </div>
+        </motion.div>
 
-        <div
+        <motion.div
+          {...cardAnimation(0.3)}
           style={{
             position: 'absolute',
             top: `${positions.weather3.top}px`,
@@ -57,9 +81,10 @@ const DayOne = () => {
           }}
         >
           <WeatherCard3 id="weather3" />
-        </div>
+        </motion.div>
 
-        <div
+        <motion.div
+          {...cardAnimation(0.45)}
           style={{
             position: 'absolute',
             top: `${positions.weather4.top}px`,
@@ -67,7 +92,7 @@ const DayOne = () => {
           }}
         >
           <WeatherCard4 id="weather4" />
-        </div>
+        </motion.div>
       </Content>
     </Container>
   );

@@ -3,7 +3,7 @@ import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import DayOne from './pages/day1.jsx';
 import DayTow from './pages/day1.jsx';
 
-import { terceary } from './constant/colors.jsx';
+import { tercearyAlpha } from './constant/colors.jsx';
 
 function App() {
   return (
@@ -26,7 +26,7 @@ function App() {
           style={{
             display: 'flex',
             gap: '10px',
-            background: '#162e4775',
+            background: tercearyAlpha,
             padding: '10px',
             borderRadius: '10px',
             boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
