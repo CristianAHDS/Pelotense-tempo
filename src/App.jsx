@@ -1,14 +1,17 @@
+import { useState } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 import DayOne from './pages/day1.jsx';
-import DayTow from './pages/day1.jsx';
+import DayTwo from './pages/day2.jsx';
 
 import { tercearyAlpha } from './constant/colors.jsx';
 
 function App() {
+  const [page, setPage] = useState(1);
+
   return (
     <>
-      <DayOne />
+      {page === 1 ? <DayOne /> : <DayTwo />}
 
       <div
         style={{
@@ -33,6 +36,7 @@ function App() {
           }}
         >
           <button
+            onClick={() => setPage(1)}
             style={{
               width: '50px',
               height: '50px',
@@ -51,6 +55,7 @@ function App() {
           </button>
 
           <button
+            onClick={() => setPage(2)}
             style={{
               width: '50px',
               height: '50px',
