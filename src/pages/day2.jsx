@@ -1,6 +1,16 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { IoMdPin } from 'react-icons/io';
 
-import { Container, Background, Content } from './pages.styled.jsx';
+import {
+  Container,
+  Background,
+  Content,
+  CardDay,
+  TextTop,
+  TextBottom,
+  EditableText,
+} from './pages.styled.jsx';
 
 import WeatherCard5 from '../components/weather/Weather5';
 import WeatherCard6 from '../components/weather/Weather6';
@@ -10,6 +20,15 @@ import WeatherCard8 from '../components/weather/Weather8';
 const DayTwo = () => {
   const width = window.innerWidth;
   const height = window.innerHeight;
+
+  const [title, setTitle] = useState(
+    () => localStorage.getItem('day2_title') || 'Domingo 28/06',
+  );
+
+  const handleTitle = (value) => {
+    setTitle(value);
+    localStorage.setItem('day2_title', value);
+  };
 
   const positions =
     width === 2048 && height === 1152
@@ -51,7 +70,7 @@ const DayTwo = () => {
 
       <Content>
         <motion.div
-          {...cardAnimation(0)}
+          {...cardAnimation(0.15)}
           style={{
             position: 'absolute',
             top: `${positions.weather1.top}px`,
@@ -62,7 +81,7 @@ const DayTwo = () => {
         </motion.div>
 
         <motion.div
-          {...cardAnimation(0.15)}
+          {...cardAnimation(0.3)}
           style={{
             position: 'absolute',
             top: `${positions.weather2.top}px`,
@@ -73,7 +92,7 @@ const DayTwo = () => {
         </motion.div>
 
         <motion.div
-          {...cardAnimation(0.3)}
+          {...cardAnimation(0.45)}
           style={{
             position: 'absolute',
             top: `${positions.weather3.top}px`,
@@ -84,7 +103,7 @@ const DayTwo = () => {
         </motion.div>
 
         <motion.div
-          {...cardAnimation(0.45)}
+          {...cardAnimation(0.6)}
           style={{
             position: 'absolute',
             top: `${positions.weather4.top}px`,
@@ -94,6 +113,33 @@ const DayTwo = () => {
           <WeatherCard8 id="weather4" />
         </motion.div>
       </Content>
+
+      <CardDay>
+        <div
+          style={{
+            position: 'relative',
+            width: '100%',
+          }}
+        >
+          <EditableText
+            value={title}
+            onChange={(e) => handleTitle(e.target.value)}
+          />
+
+          <TextTop>
+            <EditableText
+              value={title}
+              onChange={(e) => handleTitle(e.target.value)}
+            />
+            {title}
+          </TextTop>
+        </div>
+
+        <TextBottom>
+          <IoMdPin size={28} style={{ marginRight: 5 }} />
+          Zona sul do RS
+        </TextBottom>
+      </CardDay>
     </Container>
   );
 };
