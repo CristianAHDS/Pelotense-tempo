@@ -61,7 +61,7 @@ export const CardDay = styled.div`
 
   padding: 10px;
   background: rgb(255, 255, 255);
-  border-radius: 28px;
+  border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0) 0px 4px 15px;
   grid-template-columns: repeat(3, 1fr);
   gap: 8px;
