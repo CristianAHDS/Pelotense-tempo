@@ -55,8 +55,9 @@ export const CardDay = styled.div`
 
   position: absolute;
 
-  bottom: 200px;
-  left: 420px;
+  //bottom: 120px;
+  top: 40px;
+  left: 800px;
 
   padding: 10px;
   background: rgb(255, 255, 255);
