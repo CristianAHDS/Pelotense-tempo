@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { IoMdPin } from 'react-icons/io';
+import DatePicker from 'react-datepicker';
+import { ptBR } from 'date-fns/locale';
+import { format } from 'date-fns';
+
+import 'react-datepicker/dist/react-datepicker.css';
 
 import {
   Container,
@@ -21,13 +26,29 @@ const DayOne = () => {
   const width = window.innerWidth;
   const height = window.innerHeight;
 
-  const [title, setTitle] = useState(
-    () => localStorage.getItem('day1_title') || 'Sábado 27/06',
+  const initialDate = localStorage.getItem('day1_date')
+    ? new Date(localStorage.getItem('day1_date'))
+    : new Date();
+
+  const [selectedDate, setSelectedDate] = useState(initialDate);
+
+  const [title, setTitle] = useState(() =>
+    format(initialDate, 'EEEE dd/MM', {
+      locale: ptBR,
+    }).replace(/^\w/, (c) => c.toUpperCase()),
   );
 
-  const handleTitle = (value) => {
-    setTitle(value);
-    localStorage.setItem('day1_title', value);
+  const handleDate = (date) => {
+    setSelectedDate(date);
+
+    const formatted = format(date, 'EEEE dd/MM', {
+      locale: ptBR,
+    }).replace(/^\w/, (c) => c.toUpperCase());
+
+    setTitle(formatted);
+
+    localStorage.setItem('day1_title', formatted);
+    localStorage.setItem('day1_date', date.toISOString());
   };
 
   const positions =
@@ -115,25 +136,22 @@ const DayOne = () => {
       </Content>
 
       <CardDay>
-        <div
-          style={{
-            position: 'relative',
-            width: '100%',
-          }}
-        >
-          <EditableText
-            value={title}
-            onChange={(e) => handleTitle(e.target.value)}
-          />
-
-          <TextTop>
-            <EditableText
-              value={title}
-              onChange={(e) => handleTitle(e.target.value)}
-            />
-            {title}
-          </TextTop>
-        </div>
+        <DatePicker
+          selected={selectedDate}
+          onChange={handleDate}
+          locale={ptBR}
+          dateFormat="dd/MM/yyyy"
+          customInput={
+            <TextTop
+              style={{
+                cursor: 'pointer',
+                userSelect: 'none',
+              }}
+            >
+              {title}
+            </TextTop>
+          }
+        />
 
         <TextBottom>
           <IoMdPin size={28} style={{ marginRight: 5 }} />
