@@ -49,29 +49,27 @@ export const Card = styled.div`
 `;
 
 export const CardDay = styled.div`
-  width: 300px;
+  min-width: 300px;
   height: 80px;
   background-color: #fff;
 
   position: absolute;
 
-  //bottom: 120px;
   top: 40px;
-  left: 800px;
+  left: 50%;
+  transform: translateX(-50%);
 
   padding: 10px;
-  background: rgb(255, 255, 255);
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0) 0px 4px 15px;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+  box-shadow: rgba(0, 0, 0, 0) 4px 15px;
   z-index: 999;
-  text-align: center;
+
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 
+  text-align: center;
   text-transform: uppercase;
   color: #075885;
 `;
